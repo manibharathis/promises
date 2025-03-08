@@ -1,13 +1,22 @@
 const cart=["shoes","socks","shirt","pen"]
 const promise = createOrder(cart)
 promise
-.then(function(orderId){
-    console.log(orderId)
+   .then( function(orderId){
+        console.log(orderId)
+        return orderId
         })
-        .catch(function(err){
-            console.log(err.message)
+    .catch(function(err){
+        console.log(err.message)
         })
-function proceedToPayment(orderId){
+    .then( function(orderId){
+        return proceedToPayment(orderId)
+    })
+    .then(function (){
+        console.log("I will be called no matter error")
+    })
+
+
+        function proceedToPayment(orderId){
     return new Promise (function(resolve,reject){
         resolve("payment successfull")
     })
@@ -34,7 +43,7 @@ function createOrder(cart){
 }
 
 function validateCart(cart){
-    if(cart.length<0)
+    if(cart.length>0)
         return true
     else
     return false
