@@ -7,7 +7,7 @@ const promise1 = new Promise((resolve,reject)=>{
 })
 const promise2 = new Promise((resolve,reject)=>{
     setTimeout(()=>{
-       // resolve("p2 resolved")
+      //  resolve("p2 resolved")
        const err = new Error("p2 failes")
        reject(err)
     },6000)
@@ -20,9 +20,27 @@ const promise3 = new Promise((resolve,reject)=>{
     },1000)
 })
 
-Promise.all([promise1,promise2,promise3]).then((value)=>{
-    console.log(value)
-})
-.catch((error)=>{
-    console.log(error)
-})
+// Promise.all([promise1,promise2,promise3]).then((value)=>{
+//     console.log(value)
+// })
+// .catch((error)=>{
+//     console.log(error)
+// })
+
+// Promise.allSettled([promise1,promise2,promise3])
+//         .then(function(value){
+//             console.log(value)
+//         })
+//         .catch(err=>console.log(err))
+
+        // Promise.race([promise1,promise2,promise3])
+        // .then(function(value){
+        //     console.log(value)
+        // })
+        // .catch(err=>console.log(err))
+
+        Promise.any([promise1,promise2,promise3])
+        .then(function(value){
+            console.log(value)
+        })
+        .catch(err=>console.log(err))
